@@ -1,0 +1,369 @@
+@charset "utf-8";
+
+/*
+ * Readability. An Arc90 Lab Experiment. 
+ * Website: http://lab.arc90.com/experiments/readability
+ * Source:  http://code.google.com/p/arc90labs-readability
+ *
+ * Copyright (c) 2009 Arc90 Inc
+ * Readability is licensed under the Apache License, Version 2.0.
+ *
+ * Multi-column stylesheet and bookmarklet maker modifications
+ * by Jim DeVona: http://anoved.net/tag/readability
+**/
+
+#readOverlay {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#readInner {
+	margin: 0;
+	padding:0;
+	padding-left: 15px;
+	
+	line-height: 1.4em;
+	
+	-webkit-column-width-policy: strict;
+	-webkit-column-space-distribution: end;
+	-webkit-column-count: auto;
+	-webkit-column-gap: 1.5em;
+	
+	-moz-column-width-policy: strict;
+	-moz-column-space-distribution: end;
+	-moz-column-count: auto;
+	-moz-column-gap: 1.5em;
+
+	column-width-policy: strict;
+	column-space-distribution: end;
+	column-count: auto;
+	column-gap: 1.5em;
+	
+	height: 100%;
+	
+	/* seems necessary in Safari to maintain static column width */
+	width: 1000px;
+}
+
+#readInner a {
+	color: #039;
+	text-decoration: none;
+}
+
+#readInner a:hover {
+	text-decoration: underline;
+}
+
+#readInner img {
+	height: auto !important;
+	max-width: 300px;
+}
+
+#readInner h1 {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	padding-top: 64px;
+	font-size: 1.2em;
+	padding-bottom: .5em;
+	margin-bottom: .5em;
+	border-bottom: 1px solid #444;
+}
+
+#readInner blockquote {
+	margin-left: 1.5em;
+	font-style: italic;
+}
+
+table, tr, td {
+	background-color: transparent !important;
+}
+
+pre {
+	overflow: auto;
+}
+
+/* @group Footer */
+
+/* For multi-column layout, the original fancy footer gets butchered down to plain text links. */
+
+#readFooter {
+}
+
+#rdb-footer-left {
+	border-top: 1px solid #444;
+	margin-top: 0.5em;
+	padding-top: 0.5em;
+	display: block;
+}
+
+#readability-logo {
+}
+
+#arc90-logo {
+}
+
+#readability-url {
+	display: none;
+}
+
+#rdb-footer-left .footer-twitterLink {
+	display: block;
+}
+
+#rdb-footer-right {
+	display: block;
+}
+
+#rdb-footer-right .footer-twitterLink {
+	display: none;
+}
+#rdb-footer-right .version {
+	display: none;
+}
+#rdb-footer-right .rdbTK-powered {
+	display: block;
+}
+
+/* @end */
+
+/* @group Tools */
+
+#readTools {
+	width: 150px;
+	height: 34px;
+	position: absolute;
+	z-index: 100;
+	top: 10px;
+	left: 10px;
+}
+
+#readTools a {
+	overflow: hidden;
+	margin-right: 8px;
+	display: inline-block;
+	opacity: .4;
+	text-indent: -99999px;
+	height: 34px;
+	width: 34px;
+	text-decoration: none;
+	filter: alpha(opacity=40);
+	background-color: transparent!important;
+	background-image: url(http://lab.arc90.com/experiments/readability/images/sprite-readability.png)!important;
+	background-repeat: no-repeat!important;
+}
+
+#reload-page {
+	background-position: 0 0;
+}
+
+#readTools a#print-page {
+	display: none;
+}
+#print-page {
+	background-position: -36px 0;
+}
+
+#email-page {
+	background-position: -72px 0;
+}
+
+#kindle-page {
+	background-position: -108px 0;
+}
+
+#readTools a:hover {
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+/* @end */
+
+/* @group Size */
+
+.size-x-small {
+	font-size: 12px;
+}
+
+.size-small {
+	font-size: 15px;
+}
+
+.size-medium {
+	font-size: 18px;
+}
+
+.size-large {
+	font-size: 22px;
+}
+
+.size-x-large {
+	font-size: 28px;
+}
+
+/* @end */
+
+/* @group Style */
+
+.style-newspaper {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background: #fbfbfb;
+	color: #080000;
+}
+
+.style-newspaper h1 {
+	text-transform: capitalize;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.style-newspaper #readInner a {
+	color: #0924e1;
+}
+
+.style-novel {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	background: #f4eed9;
+	color: #1d1916;
+}
+
+.style-novel #readInner a {
+	color: #1856ba;
+}
+
+.style-ebook {
+	font-family: Arial, Helvetica, sans-serif;
+	background: #edebe8;
+	color: #2c2d32;
+}
+
+.style-ebook #readInner a {
+	color: #187dc9;
+}
+
+.style-ebook h1 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-weight: 400;
+}
+
+.style-terminal {
+	font-family: "Lucida Console", Monaco, monospace;
+	background: #1d4e2c;
+	color: #c6ffc6;
+}
+
+.style-terminal #readInner a {
+	color: #093;
+}
+
+/* @group Typekit */
+
+.style-apertura {
+	font-family: "apertura-1", "apertura-2", sans-serif;
+	background-color: #2d2828;
+	color: #eae8e9;
+}
+
+.style-apertura #readInner a {
+	color: #58b0ff;
+}
+
+.style-apertura #readInner h1 {
+	border-bottom-color: #ededed;
+}
+
+.style-apertura #readFooter {
+	border-top-color: #ededed;
+}
+
+.style-apertura #readability-logo {
+	background-position: 0 -67px;
+}
+
+.style-apertura #arc90-logo {
+	background-position: right -67px;
+}
+
+.style-athelas {
+	font-family: "athelas-1", "athelas-2", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	background-color: #f7f7f7;
+	color: #2b373d;
+}
+
+.style-athelas #readInner a {
+	color: #1e83cb;
+}
+
+.style-apertura #rdb-inverse,.style-athelas #rdb-athelas {
+	display: block;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Column */
+
+/* For compatibility with the original Readability, we interpret margin width styles as column width styles. Narrow margins equate to wide columns. */
+
+#readInner.margin-x-narrow {
+	/*width: 95%;*/
+	-webkit-column-width: 420px;
+	-moz-column-width: 420px;
+	column-width: 420px;
+}
+
+#readInner.margin-narrow {
+	/*width: 85%;*/
+	-webkit-column-width: 350px;
+	-moz-column-width: 350px;
+	column-width: 350px;
+}
+
+#readInner.margin-medium {
+	/*width: 75%;*/
+	-webkit-column-width: 300px;
+	-moz-column-width: 300px;
+	column-width: 300px;
+}
+
+#readInner.margin-wide {
+	/*width: 55%;*/
+	-webkit-column-width: 250px;
+	-moz-column-width: 250px;
+	column-width: 250px;
+}
+
+#readInner.margin-x-wide {
+	/*width: 35%;*/
+	-webkit-column-width: 200px;
+	-moz-column-width: 200px;
+	column-width: 200pxpx;
+}
+
+/* @end */
+
+/* @group Email */
+
+#kindle-container, #email-container {
+	position: fixed;
+	top: 60px;
+	left: 50%;
+	width: 500px;
+	height: 490px;
+	border: solid 3px #666;
+	background-color: #fff;
+	z-index: 100!important;
+	overflow: hidden;
+	margin: 0 0 0 -240px;
+	padding: 0;
+}
+
+
+
+/* @end */
