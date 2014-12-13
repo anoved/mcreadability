@@ -1,50 +1,104 @@
-<div class="post-2344 post type-post status-publish format-standard hentry category-uncategorized tag-code tag-css tag-javascript tag-readability" id="post-2344">
-<h1 class="posttitle">McReadability</h1><p><a href="http://lab.arc90.com/experiments/readability/">Readability</a> is a simple tool that makes reading on the Web more enjoyable by removing the clutter around what you&#8217;re reading. McReadability (&#8220;Multi-column Readability&#8221;) is a new stylesheet for Readability that formats the text in constant-height columns arranged side-by-side. It works best with lengthy texts.</p>
-<p><a href="http://www.flickr.com/photos/anoved/4718702080/sizes/l/"><img class="alignnone" title="Narrow Columns" src="http://farm5.static.flickr.com/4022/4718702080_0a5a49bc47_t.jpg" alt="" width="100" height="61" /></a> <a href="http://www.flickr.com/photos/anoved/4718057583/sizes/l/in/photostream/"><img class="alignnone" title="Medium Columns" src="http://farm5.static.flickr.com/4069/4718057583_6fcaa9dc3f_t.jpg" alt="" width="100" height="61" /></a> <a href="http://www.flickr.com/photos/anoved/4718058679/sizes/l/in/photostream/"><img class="alignnone" title="Wide Columns" src="http://farm5.static.flickr.com/4027/4718058679_62d3acaed7_t.jpg" alt="" width="100" height="61" /></a></p>
-<p><span id="more-2344"></span></p>
-<p>For more screenshots and information, <a href="http://anoved.net/tag/readability/">view these previous posts</a>.</p>
-<p><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js" type="text/javascript"></script> <script src="http://anoved.net/js/mcreadability-start.js" type="text/javascript"></script></p>
-<h3>Create a New McReadability Bookmarklet</h3>
-<p>Choose a typeface, font size, and column width:</p>
-<table width="100%">
-<tbody>
-<tr>
-<td width="33%" valign="top">
-<dl id="style" class="settings-box">
-<dt>Choose a Style:</dt>
-<dd> <input id="newspaper" name="style" type="radio" value="style-newspaper" /><label style="font-family: 'Times New Roman', Times, serif; background: #fbfbfb; color: #080000;" for="newspaper">Newspaper</label></dd>
-<dd> <input id="novel" checked="checked" name="style" type="radio" value="style-novel" /><label style="font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; background: #f4eed9; color: #1d1916;" for="novel">Novel</label></dd>
-<dd> <input id="ebook" name="style" type="radio" value="style-ebook" /><label style="font-family: Arial, Helvetica, sans-serif; background: #edebe8; color: #2c2d32;" for="ebook">eBook</label></dd>
-<dd> <input id="terminal" name="style" type="radio" value="style-terminal" /><label style="font-family: 'Lucida Console', Monaco, monospace; background: #1d4e2c; color: #c6ffc6;" for="terminal">Terminal</label></dd>
-<dd> <input id="apertura" name="style" type="radio" value="style-apertura" /><label style="font-family: 'apertura-1', 'apertura-2', sans-serif; background-color: #2d2828; color: #eae8e9;" title="Powered by Typekit" for="apertura">Apertura</label> (<a href="http://typekit.com/" target="_blank">Typekit</a>)</dd>
-<dd> <input id="athelas" name="style" type="radio" value="style-athelas" /><label style="font-family: 'athelas-1', 'athelas-2', 'Palatino Linotype', 'Book Antiqua', Palatino, serif; background-color: #f7f7f7; color: #2b373d;" title="Powered by Typekit" for="athelas">Athelas</label> (<a href="http://typekit.com/" target="_blank">Typekit</a>)</dd>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>McReadability</title>
+	<script type="text/javascript">
+		
+		/*
+		 * Returns the current value of the bookmarklet URL.
+		 * (Mostly static; just updates with current settings.)
+		 */
+		function makeurl() {
+			
+			var form = document.forms['mcrform'];
+			var style_class = form.style.value;
+			var size_class = form.size.value;
+			var margin_class = form.margin.value;
+			var footnote_bool = form.footnotes.checked;
+			
+			var url = "javascript:(function(){";
+			url += "readConvertLinksToFootnotes=" + (footnote_bool ? 'true' : 'false') + ";readStyle='" + style_class + "';readSize='" + size_class + "';readMargin='" + margin_class + "';";
+			url += "mcr_script=document.createElement('SCRIPT');mcr_script.type='text/javascript';mcr_script.src='http://anoved.github.io/mcreadability/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(mcr_script);mcr_stylesheet=document.createElement('LINK');mcr_stylesheet.rel='stylesheet';mcr_stylesheet.href='http://anoved.github.io/mcreadability/mcreadability.css';mcr_stylesheet.type='text/css';mcr_stylesheet.media='all';document.getElementsByTagName('head')[0].appendChild(mcr_stylesheet);})();"
+		
+			return url;
+		};
+		
+		/*
+		 * Called onload and whenever settings change.
+		 * Gets the current value of the bookmarklet and updates the link/textbox.
+		 */
+		function update() {
+			var url = makeurl();
+			document.getElementById("bookmarkletLink").href = url;
+			document.getElementById("bookmarkletBox").value = url;
+		};
+		
+		/*
+		 * Notice displayed when 
+		 */
+		function bmclick() {
+			alert("Drag this link to your browser's bookmark toolbar.");
+			return false;
+		}
+		
+	</script>
+	</head>
+<body onload="update();">
+
+<a href="https://github.com/anoved/mcreadability"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+<h1>McReadability</h1>
+
+<p><img src="screenshot-comparison-thumbnail.png" width="800" height="225" alt="An article before and after using McReadability" /></p>
+
+<p>McReadability is a multi-column version of <a href="http://lab.arc90.com/experiments/readability/">Arc90's Readability bookmarklet</a>. The original Readability is now defunct, but you can still use this version. McReadability formats the text in constant-height columns. You scroll horizontally. Choose your settings and drag the McReadbility link below to your browser's toolbar.
+
+<hr />
+
+<form name="mcrform">
+
+<dl id="style">
+	<dt>Choose a Style:</dt>
+	<dd> <input id="newspaper" name="style" type="radio" value="style-newspaper" onchange="update();" /><label style="font-family: 'Times New Roman', Times, serif; background: #fbfbfb; color: #080000;" for="newspaper">Newspaper</label></dd>
+	<dd> <input id="novel" checked="checked" name="style" type="radio" value="style-novel" onchange="update();" /><label style="font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; background: #f4eed9; color: #1d1916;" for="novel">Novel</label></dd>
+	<dd> <input id="ebook" name="style" type="radio" value="style-ebook" onchange="update();" /><label style="font-family: Arial, Helvetica, sans-serif; background: #edebe8; color: #2c2d32;" for="ebook">eBook</label></dd>
+	<dd> <input id="terminal" name="style" type="radio" value="style-terminal" onchange="update();" /><label style="font-family: 'Lucida Console', Monaco, monospace; background: #1d4e2c; color: #c6ffc6;" for="terminal">Terminal</label></dd>
+	<dd> <input id="apertura" name="style" type="radio" value="style-apertura" onchange="update();" /><label style="font-family: 'apertura-1', 'apertura-2', sans-serif; background-color: #2d2828; color: #eae8e9;" title="Powered by Typekit" for="apertura">Apertura</label> (<a href="http://typekit.com/" target="_blank">Typekit</a>)</dd>
+	<dd> <input id="athelas" name="style" type="radio" value="style-athelas" onchange="update();" /><label style="font-family: 'athelas-1', 'athelas-2', 'Palatino Linotype', 'Book Antiqua', Palatino, serif; background-color: #f7f7f7; color: #2b373d;" title="Powered by Typekit" for="athelas">Athelas</label> (<a href="http://typekit.com/" target="_blank">Typekit</a>)</dd>
 </dl>
-</td>
-<td width="33%" valign="top">
-<dl id="size" class="settings-box">
-<dt>Choose a Font Size:</dt>
-<dd> <input id="x-small" name="size" type="radio" value="size-x-small" /><label style="font-size: 12px;" for="x-small">Extra Small</label></dd>
-<dd> <input id="small" name="size" type="radio" value="size-small" /><label style="font-size: 15px;" for="small">Small</label></dd>
-<dd> <input id="medium" checked="checked" name="size" type="radio" value="size-medium" /><label style="font-size: 18px;" for="medium">Medium</label></dd>
-<dd> <input id="large" name="size" type="radio" value="size-large" /><label style="font-size: 22px;" for="large">Large</label></dd>
-<dd> <input id="x-large" name="size" type="radio" value="size-x-large" /><label style="font-size: 28px;" for="x-large">Extra Large</label></dd>
+
+<dl id="size">
+	<dt>Choose a Font Size:</dt>
+	<dd> <input id="x-small" name="size" type="radio" value="size-x-small" onchange="update();" /><label style="font-size: 12px;" for="x-small">Extra Small</label></dd>
+	<dd> <input id="small" name="size" type="radio" value="size-small" onchange="update();" /><label style="font-size: 15px;" for="small">Small</label></dd>
+	<dd> <input id="medium" checked="checked" name="size" type="radio" value="size-medium" onchange="update();" /><label style="font-size: 18px;" for="medium">Medium</label></dd>
+	<dd> <input id="large" name="size" type="radio" value="size-large" onchange="update();" /><label style="font-size: 22px;" for="large">Large</label></dd>
+	<dd> <input id="x-large" name="size" type="radio" value="size-x-large" onchange="update();" /><label style="font-size: 28px;" for="x-large">Extra Large</label></dd>
 </dl>
-</td>
-<td width="33%" valign="top">
-<dl id="margin" class="settings-box">
-<dt>Choose a Column Width:</dt>
-<dd> <input id="x-wide" name="margin" type="radio" value="margin-x-wide" /><label for="x-wide">Narrow</label></dd>
-<dd> <input id="med" checked="checked" name="margin" type="radio" value="margin-medium" /><label for="med">Medium</label></dd>
-<dd> <input id="x-narrow" name="margin" type="radio" value="margin-x-narrow" /><label for="x-narrow">Wide</label></dd>
+
+<dl id="margin">
+	<dt>Choose a Column Width:</dt>
+	<dd> <input id="x-wide" name="margin" type="radio" value="margin-x-wide" onchange="update();" /><label for="x-wide">Narrow</label></dd>
+	<dd> <input id="med" checked="checked" name="margin" type="radio" value="margin-medium" onchange="update();" /><label for="med">Medium</label></dd>
+	<dd> <input id="x-narrow" name="margin" type="radio" value="margin-x-narrow" onchange="update();" /><label for="x-narrow">Wide</label></dd>
 </dl>
-<p>(See screenshots above for width comparison.)</td>
-</tr>
-</tbody>
-</table>
-<p><input id="footnotes" name="footnotes" type="checkbox" value="1" /><label for="footnotes"><a href="http://blog.arc90.com/2010/06/03/readability-updated-an-end-to-the-yank-of-the-hyperlink/" target="_blank">Convert hyperlinks to footnotes</a></label></p>
-<p>Drag the following link to your web browser&#8217;s bookmark bar. To use McReadability, just view an article and click the bookmarklet.</p>
-<h2><strong><a style="padding:8px;background:#94EEA5;border:1px outset #78C085;" id="bookmarkletLink" href="#">McReadability</a></strong></h2>
-<p>Alternatively, mobile browser users may find this process easier: copy the following bookmarklet code, bookmark this page, and replace the bookmark address with the pasted code.<br />
-<textarea rows="6" cols="80" style="padding:8px;background:#94EEA5;border:1px inset #78C085;" id="bookmarkletBox"></textarea></p>
-<h3>Limitations and Acknowledgements</h3>
-<p>The McReadability stylesheet is not intended for printing, nor has it been thoroughly tested in many browsers (although it seems to work fine in current versions of Chrome, Firefox, and Safari). There&#8217;s some funkiness with different column widths, which is why I only provide three options above. The original Readability is ©2009 <a href="http://lab.arc90.com/">Arc90 Inc</a> and is licensed under the <a href="http://code.google.com/p/arc90labs-readability/">open source</a> Apache License, Version 2.0. I think that means it&#8217;s OK for me to make these changes and share them with you.</p>
+
+
+<p><input id="footnotes" name="footnotes" type="checkbox" value="1" checked onchange="update();"/><label for="footnotes"><a href="http://blog.arc90.com/2010/06/03/readability-updated-an-end-to-the-yank-of-the-hyperlink/" target="_blank">Convert hyperlinks to footnotes</a></label></p>
+
+</form>
+
+<hr />
+
+<p>Drag this link to your browser's bookmark toolbar:</p>
+
+<p style="margin-top:20px;margin-bottom:20px;"><a id="bookmarkletLink" href="#" onclick="return bmclick();" style="font-size:large; font-family:sans-serif; border: 2px outset #DDF; padding: 8px;background-color:#DDF;">McReadability</a></p>
+
+<p>Alternatively, for mobile browsers where dragging is difficult: copy the link code below, bookmark this page, edit the bookmark, and paste the code in place of the bookmark's original URL.
+
+<p><textarea rows="6" cols="80" id="bookmarkletBox" onfocus="this.select();"></textarea></p>
+
+<p>Now whenever you are reading a long article, click your McReadability bookmarklet to reformat the page for easy and consistent reading.</p>
+
+</body>
+</html>
