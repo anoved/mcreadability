@@ -18,7 +18,7 @@
 			
 			var url = "javascript:(function(){";
 			url += "readConvertLinksToFootnotes=" + (footnote_bool ? 'true' : 'false') + ";readStyle='" + style_class + "';readSize='" + size_class + "';readMargin='" + margin_class + "';";
-			url += "mcr_script=document.createElement('SCRIPT');mcr_script.type='text/javascript';mcr_script.src='http://anoved.github.io/mcreadability/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(mcr_script);mcr_stylesheet=document.createElement('LINK');mcr_stylesheet.rel='stylesheet';mcr_stylesheet.href='http://anoved.github.io/mcreadability/mcreadability.css';mcr_stylesheet.type='text/css';mcr_stylesheet.media='all';document.getElementsByTagName('head')[0].appendChild(mcr_stylesheet);})();"
+			url += "mcr_script=document.createElement('SCRIPT');mcr_script.type='text/javascript';mcr_script.src='http://anoved.github.io/mcreadability/readability.js?x='+(Math.random());document.getElementsByTagName('head')[0].appendChild(mcr_script);mcr_stylesheet=document.createElement('LINK');mcr_stylesheet.rel='stylesheet';mcr_stylesheet.href='http://anoved.github.io/mcreadability/mcreadability.css';mcr_stylesheet.type='text/css';mcr_stylesheet.media='all';document.getElementsByTagName('head')[0].appendChild(mcr_stylesheet);ss_script=document.createElement('SCRIPT');ss_script.type='text/javascript';ss_script.src='http://anoved.github.io/mcreadability/scroll-converter.js';document.getElementsByTagName('head')[0].appendChild(ss_script);scrollConverter.activate();})();"
 		
 			return url;
 		};
