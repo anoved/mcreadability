@@ -13,11 +13,21 @@ body {
 	/* column-width seems to be treated as a suggestion; actual width
 	is varied to fit an even number of columns within screen width. */
 
+	column-width-policy: strict;
+	column-space-distribution: end;
+		
 	column-width: 20em;
 	column-count: auto;
 	column-gap: 1.5em;
 
 	line-height: 1.5em;
+	
+	
+	font-family: Georgia, "Times New Roman", Times, serif;
+	background: #fbfbfb;
+	color: #080000;
+	font-size: 12px;
+
 }
 
 /* This is a fudge fix to prevent the children of the body tag from
