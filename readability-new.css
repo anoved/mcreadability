@@ -39,3 +39,8 @@ body > * {
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
 }
+
+img {
+	height: auto !important;
+	max-width: 20em;
+}
