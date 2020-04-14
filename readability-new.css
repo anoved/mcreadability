@@ -13,9 +13,13 @@ body {
 	/* column-width seems to be treated as a suggestion; actual width
 	is varied to fit an even number of columns within screen width. */
 
+	/*
+	not real styles?
 	column-width-policy: strict;
 	column-space-distribution: end;
-		
+	*/
+	
+	column-fill: auto;
 	column-width: 20em;
 	column-count: auto;
 	column-gap: 1.5em;
